@@ -4,7 +4,7 @@
 
 ## Information
 Based on Willem's [DSMR-logger](https://willem.aandewiel.nl) this extension will display the [API](https://willem.aandewiel.nl/index.php/2020/02/28/restapis-zijn-hip-nieuwe-firmware-voor-de-dsmr-logger) recieved from the DSMR-Logger.<br>
-Information is displayed on index of your forum and can be stored in database for other extensions, one already under construction 🚧 
+Information is displayed on index of your forum and can be stored in database for other extensions, one already under construction 🚧<br>
 ACP options to set the IP local or remote if you port forward that in your router, and other options to set like phase, total watss, solar power total, refresh interval.<br>
 Permission can be set to allow who can view the Smart read out on index.
 
