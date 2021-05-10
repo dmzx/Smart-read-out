@@ -1,0 +1,20 @@
+{% if SCRIPT_NAME eq 'index' %}
+
+<script>
+	var smartreadout = {
+		script: '{{ SCRIPT_NAME }}',
+
+		allow_smartreadout: {{ S_SMARTREADOUT_ALLOW_SMARTREADOUT }},
+
+		smartreadout_url: '{{ U_SMARTREADOUT_SMART_READ_OUT }}',
+		smartreadout_refresh: '{{ SMARTREADOUT_REFRESH }}',
+		smartreadout_total_solar_power: '{{ SMARTREADOUT_TOTAL_SOLAR_POWER }}',
+		smartreadout_total_power: '{{ SMARTREADOUT_TOTAL_POWER }}',
+	}
+</script>
+
+{% INCLUDEJS '@dmzx_smartreadout/js/smartreadout.js' %}
+{% INCLUDEJS '@dmzx_smartreadout/js/raphael.min.js' %}
+{% INCLUDEJS '@dmzx_smartreadout/js/justgage.js' %}
+
+{% endif %}

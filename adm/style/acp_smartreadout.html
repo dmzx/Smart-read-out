@@ -1,0 +1,97 @@
+{% INCLUDE 'overall_header.html' %}
+
+<h1><i class="fa fa-bolt" aria-hidden="true"></i> {{ lang('ACP_SMARTREADOUT_TITLE') }}</h1>
+
+{% if S_ERROR %}
+	<div class="errorbox">
+		<h3>{{ lang('WARNING') }}</h3>
+		<p>{{ ERROR_MSG }}</p>
+	</div>
+{% endif %}
+
+<form id="smartreadout" method="post" action="{{ U_ACTION }}">
+	<fieldset>
+		<legend><i class="icon fa-cog fa-lg" aria-hidden="true"></i> {{ lang('ACP_SMARTREADOUT_SETTINGS') }}</legend>
+		<dl>
+			<dt>
+				<label for="smartreadout_allow_smartreadout">{{ lang('ACP_SMARTREADOUT_ALLOW_SMARTREADOUT') ~ lang('COLON') }}</label><br><span>{{ lang('ACP_SMARTREADOUT_ALLOW_SMARTREADOUT_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<label><input type="radio" id="smartreadout_allow_smartreadout" class="radio" name="smartreadout_allow_smartreadout" value="1"{% if SMARTREADOUT_ALLOW_SMARTREADOUT %} checked="checked"{% endif %} /> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="smartreadout_allow_smartreadout" value="0"{% if not SMARTREADOUT_ALLOW_SMARTREADOUT %} checked="checked"{% endif %} /> {{ lang('NO') }}</label>
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label>{{ lang('ACP_SMARTREADOUT_IP_ADRESS') ~ lang('COLON') }}</label><br><span>{{ lang('ACP_SMARTREADOUT_IP_ADRESS_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<input type="text" name="smartreadout_ip_adress" size="20" maxlength="20" value="{{ SMARTREADOUT_IP_ADRESS }}" />
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label>{{ lang('ACP_SMARTREADOUT_IP_PORT') ~ lang('COLON') }}</label><br><span>{{ lang('ACP_SMARTREADOUT_IP_PORT_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<input type="text" name="smartreadout_ip_port" size="6" maxlength="6" value="{{ SMARTREADOUT_IP_PORT }}" />
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label for="smartreadout_available_net">{{ lang('ACP_SMARTREADOUT_AVAILABLE_NET') ~ lang('COLON') }}</label><br><span>{{ lang('ACP_ACP_SMARTREADOUT_AVAILABLE_NET_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<label><input type="radio" id="smartreadout_available_net" class="radio" name="smartreadout_available_net" value="1"{% if SMARTREADOUT_AVAILABLE_NET %} checked="checked"{% endif %} /> {{ lang('ACP_SMARTREADOUT_AVAILABLE_NET_SINGLE_PHASE') }}</label>
+				<label><input type="radio" class="radio" name="smartreadout_available_net" value="0"{% if not SMARTREADOUT_AVAILABLE_NET %} checked="checked"{% endif %} /> {{ lang('ACP_SMARTREADOUT_AVAILABLE_NET_THREE_PHASE') }}</label>
+			</dd>
+		</dl>
+
+		<dl>
+			<dt>
+				<label>{{ lang('ACP_SMARTREADOUT_PHASE_CONNECT') ~ lang('COLON') }}</label><br><span>{{ lang('ACP_SMARTREADOUT_PHASE_CONNECT_EXPLAIN') }}</span>
+			</dt>
+			<dd>{{ SMARTREADOUT_PHASE_CONNECT }}</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label>{{ lang('ACP_SMARTREADOUT_TOTAL_SOLAR_POWER') ~ lang('COLON') }}</label><br><span>{{ lang('ACP_SMARTREADOUT_TOTAL_SOLAR_POWER_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<input type="text" name="smartreadout_total_solar_power" size="6" maxlength="6" value="{{ SMARTREADOUT_TOTAL_SOLAR_POWER }}" />
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label>{{ lang('ACP_SMARTREADOUT_TOTAL_POWER') ~ lang('COLON') }}</label><br><span>{{ lang('ACP_SMARTREADOUT_TOTAL_POWER_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<input type="text" name="smartreadout_total_power" size="6" maxlength="6" value="{{ SMARTREADOUT_TOTAL_POWER }}" />
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label for="smartreadout_enable_log">{{ lang('ACP_SMARTREADOUT_ENABLE_LOG') ~ lang('COLON') }}</label><br><span>{{ lang('ACP_SMARTREADOUT_ENABLE_LOG_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<label><input type="radio" id="smartreadout_enable_log" class="radio" name="smartreadout_enable_log" value="1"{% if SMARTREADOUT_ENABLE_LOG %} checked="checked"{% endif %} /> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="smartreadout_enable_log" value="0"{% if not SMARTREADOUT_ENABLE_LOG %} checked="checked"{% endif %} /> {{ lang('NO') }}</label>
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label for="smartreadout_refresh">{{ lang('ACP_SMARTREADOUT_REFRESH') ~ lang('COLON') }}</label><br><span>{{ lang('ACP_SMARTREADOUT_REFRESH_EXPLAIN') }}</span>
+			</dt>
+			<dd><input type="number" name="smartreadout_refresh" id="smartreadout_refresh" size="3" maxlength="3" min="5" max="60" value="{{ SMARTREADOUT_REFRESH }}" /></dd>
+		</dl>
+	</fieldset>
+
+	<fieldset class="submit-buttons">
+		<legend>{{ lang('SUBMIT') }}</legend>
+		<input class="button1" type="submit" id="submit" name="submit" value="{{ lang('SUBMIT') }}" />
+	</fieldset>
+
+	{{ S_FORM_TOKEN }}
+</form>
+
+{% INCLUDE 'overall_footer.html' %}

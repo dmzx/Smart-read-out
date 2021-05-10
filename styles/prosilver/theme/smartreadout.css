@@ -1,0 +1,41 @@
+.smartreadout {
+	width: 15%;
+	border: none;
+	display: inline-block;
+	float: left;
+	text-align:left;
+	margin-left: 4px;
+	margin-top: 3.3px;
+	padding-bottom:3px;
+	padding-top: 5px;
+}
+
+.dark.purple .grid-module {
+    background: #27293d;
+}
+
+.dark.purple .green {
+    border-top: 4px solid #00f2c3;
+}
+
+.dark .col-title {
+    color: #9e9e9e;
+    text-shadow: none;
+}
+
+.col-title {
+    font-size: 85%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+	margin: 16px;
+}
+
+.grid-module {
+    color: rgb(36, 36, 36);
+    font-weight: normal;
+    margin-top: 5px;
+    padding: 7px;
+}
+

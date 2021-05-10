@@ -1,0 +1,2 @@
+parameters:
+    tables.smartreadout_log: '%core.table_prefix%smartreadout_log'

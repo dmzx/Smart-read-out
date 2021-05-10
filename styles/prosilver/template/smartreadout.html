@@ -1,0 +1,201 @@
+{% if SMARTREADOUT_VIEW and SMARTREADOUT_ACTIVE_VIEW %}
+
+<div class="forabg">
+	<div class="inner">
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="row-item">
+					<dt>
+						<div class="smartreadout_title responsive-show">{{ lang('SMARTREADOUT_OVERVIEW') }}</div>
+					</dt>
+				</dl>
+				<dd></dd>
+			</li>
+		</ul>
+		<ul id="navbar" class="topiclist forums">
+		{% for smartreadout in loops.smartreadout %}
+			<li class="row-items">
+				<dl>
+					<div class="form-group col-md-3" style="text-align: center;">
+						<label class="col-title">{{ lang('SMARTREADOUT_SOLAR_POWER_TOTAL') }}</label>
+						<br><label class="col-title">{{ lang('SMARTREADOUT_WON_SOLAR_ENERGY') }}</label>
+						<div class="col-lg-10" style="padding-left:0px;">
+							<div class="smartreadout" id="power_returned_phase" style="width:120px; height:100px"></div>
+						</div>
+					</div>
+					<div class="form-group col-md-3" style="text-align: center;">
+						<label class="col-title">{{ lang('SMARTREADOUT_POWER_RETURNED') }}</label>
+						<br><label class="col-title">{{ lang('SMARTREADOUT_RETURNED_TO_NET') }}</label>
+						<div class="col-lg-10" style="padding-left:12px;">
+							<div class="smartreadout" id="power_returned" style="width:120px; height:100px"></div>
+						</div>
+					</div>
+					<div class="form-group col-md-3" style="text-align: center;">
+						<label class="col-title">{{ lang('SMARTREADOUT_POWER_USED') }}</label>
+						<br><label class="col-title">{{ lang('SMARTREADOUT_TOTAL_MIN_RETURNED') }}</label>
+						<div class="col-lg-10" style="padding-left:12px;">
+							<div class="smartreadout" id="power_delivered" style="width:120px; height:100px"></div>
+						</div>
+					</div>
+					<div class="form-group col-md-3 responsive-hide" style="text-align: center;">
+						<label class="col-title">{{ lang('SMARTREADOUT_ENERGY_RETURNED') }}</label>
+						<br><label class="col-title">{{ lang('SMARTREADOUT_TARRIF_1') }}</label>
+						<div class="col-lg-10" style="padding-left:12px;">
+							<h3 id="valid_requests" style="padding-top: 0;">{{ smartreadout.ENERGY_RETURNED_TARIFF1 }} {{ lang('SMARTREADOUT_KW') }}</h3>
+						</div>
+					</div>
+					<div class="form-group col-md-3 responsive-hide" style="text-align: center;">
+						<label class="col-title">{{ lang('SMARTREADOUT_ENERGY_RETURNED') }}</label>
+						<br><label class="col-title">{{ lang('SMARTREADOUT_TARRIF_2') }}</label>
+						<div class="col-lg-10" style="padding-left:0px;">
+							<h3 id="valid_requests" style="padding-top: 0;">{{ smartreadout.ENERGY_RETURNED_TARIFF2 }} {{ lang('SMARTREADOUT_KW') }}</h3>
+						</div>
+					</div>
+					<div class="form-group col-md-3 responsive-hide" style="text-align: center;">
+						<label class="col-title">{{ lang('SMARTREADOUT_VOLTAGE') }}</label>
+						<br><label class="col-title">{{ lang('SMARTREADOUT_PHASE_1') }}</label>
+						<div class="col-lg-10" style="padding-left:0px;">
+							<h3 id="valid_requests" style="padding-top: 0;">{{ smartreadout.VOLTAGE_L1 }}</h3>
+						</div>
+					</div>
+					{% if S_SMARTREADOUT_AVAILABLE_NET %}
+					<div class="form-group col-md-3 responsive-hide" style="text-align: center;">
+						<label class="col-title">{{ lang('SMARTREADOUT_VOLTAGE') }}</label>
+						<br><label class="col-title">{{ lang('SMARTREADOUT_PHASE_2') }}</label>
+						<div class="col-lg-10" style="padding-left:0px;">
+							<h3 id="valid_requests" style="padding-top: 0;">{{ smartreadout.VOLTAGE_L2 }}</h3>
+						</div>
+					</div>
+					<div class="form-group col-md-3 responsive-hide" style="text-align: center;">
+						<label class="col-title">{{ lang('SMARTREADOUT_VOLTAGE') }}</label>
+						<br><label class="col-title">{{ lang('SMARTREADOUT_PHASE_3') }}</label>
+						<div class="col-lg-10" style="padding-left:0px;">
+							<h3 id="valid_requests" style="padding-top: 0;">{{ smartreadout.VOLTAGE_L3 }}</h3>
+						</div>
+					</div>
+					{% endif %}
+					<div class="form-group col-md-3 responsive-hide" style="text-align: center;">
+						<label class="col-title">{{ lang('SMARTREADOUT_CURRENT') }}</label>
+						<br><label class="col-title">{{ lang('SMARTREADOUT_PHASE_1') }}</label>
+						<div class="col-lg-10" style="padding-left:0px;">
+							<h3 id="valid_requests" style="padding-top: 0;">{{ smartreadout.CURRENT_L1 }}</h3>
+						</div>
+					</div>
+					{% if S_SMARTREADOUT_AVAILABLE_NET %}
+					<div class="form-group col-md-3 responsive-hide" style="text-align: center;">
+						<label class="col-title">{{ lang('SMARTREADOUT_CURRENT') }}</label>
+						<br><label class="col-title">{{ lang('SMARTREADOUT_PHASE_2') }}</label>
+						<div class="col-lg-10" style="padding-left:0px;">
+							<h3 id="valid_requests" style="padding-top: 0;">{{ smartreadout.CURRENT_L2 }}</h3>
+						</div>
+					</div>
+					<div class="form-group col-md-3 responsive-hide" style="text-align: center;">
+						<label class="col-title">{{ lang('SMARTREADOUT_CURRENT') }}</label>
+						<br><label class="col-title">{{ lang('SMARTREADOUT_PHASE_3') }}</label>
+						<div class="col-lg-10" style="padding-left:0px;">
+							<h3 id="valid_requests" style="padding-top: 0;">{{ smartreadout.CURRENT_L3 }}</h3>
+						</div>
+					</div>
+					{% endif %}
+				</dl>
+			</li>
+			<script>
+				var power_returned_phase = {{ smartreadout.POWER_RETURNED_PHASE }};
+				var power_returned = {{ smartreadout.POWER_RETURNED }};
+				var power_delivered = {{ smartreadout.POWER_DELIVERED }};
+			</script>
+		{% endfor %}
+		</ul>
+	</div>
+</div>
+
+<script>
+	var power_returned_phase = new JustGage({
+		id: "power_returned_phase",
+		value: power_returned_phase * 1000,
+		min: 0,
+		max: smartreadout.smartreadout_total_solar_power,
+		title: "power returned phase",
+		label: "Watt",
+		formatNumber: true,
+		pointer: true,
+		gaugeWidthScale: 0.6,
+		customSectors: [{
+			color: '#ff0000',
+			lo: 50,
+			hi: 100
+		}, {
+			color: '#00ff00',
+			lo: 0,
+			hi: 50
+		}],
+		counter: true,
+		titleFontColor: "red",
+		titleFontFamily: "calibri",
+		titlePosition: "below",
+		valueFontColor: "blue",
+		valueFontFamily: "calibri",
+		valueMinFontSize: 14,
+		labelMinFontSize: 10
+	 });
+
+	 var power_returned = new JustGage({
+		id: 'power_returned',
+		value: power_returned * 1000,
+		min: 0,
+		max: smartreadout.smartreadout_total_solar_power,
+		title: "power returned",
+		label: "Watt",
+		formatNumber: true,
+		pointer: true,
+		gaugeWidthScale: 0.6,
+		customSectors: [{
+			color: '#00ff00',
+			lo: 50,
+			hi: 100
+		}, {
+			color: '#ff0000',
+			lo: 0,
+			hi: 50
+		}],
+		counter: true,
+		titleFontColor: "red",
+		titleFontFamily: "calibri",
+		titlePosition: "below",
+		valueFontColor: "blue",
+		valueFontFamily: "calibri",
+		valueMinFontSize: 14,
+		labelMinFontSize: 10
+	});
+
+	var power_delivered = new JustGage({
+		id: 'power_delivered',
+		value: power_delivered * 1000,
+		min: 0,
+		max: smartreadout.smartreadout_total_power,
+		title: "power returned",
+		label: "Watt",
+		formatNumber: true,
+		pointer: true,
+		gaugeWidthScale: 0.6,
+		customSectors: [{
+			color: '#00ff00',
+			lo: 50,
+			hi: 100
+		}, {
+			color: '#ff0000',
+			lo: 0,
+			hi: 50
+		}],
+		counter: true,
+		titleFontColor: "red",
+		titleFontFamily: "calibri",
+		titlePosition: "below",
+		valueFontColor: "blue",
+		valueFontFamily: "calibri",
+		valueMinFontSize: 14,
+		labelMinFontSize: 10
+	});
+</script>
+{% endif %}
+

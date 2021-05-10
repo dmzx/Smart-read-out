@@ -1,0 +1,3 @@
+{% if SMARTREADOUT_FOOTER_VIEW and S_USER_LOGGED_IN %}
+	<div><i class="fa fa-bolt" aria-hidden="true"></i> {{ SMARTREADOUT_DISPLAY_NAME }} <span title="{{ lang('SMARTREADOUT_VERSION') ~ lang('COLON') }} {{ SMARTREADOUT_VERSION }}">&copy;</span> {{ lang('POST_BY_AUTHOR') }} {{ SMARTREADOUT_AUTHOR_HOMEPAGES }}</div>
+{% endif %}

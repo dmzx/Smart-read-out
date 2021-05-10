@@ -1,0 +1,42 @@
+imports:
+    - { resource: tables.yml }
+
+services:
+    dmzx.smartreadout.controller:
+        class: dmzx\smartreadout\controller\main_controller
+        arguments:
+            - '@template'
+            - '@auth'
+            - '@config'
+            - '@controller.helper'
+            - '@dmzx.smartreadout.functions'
+    dmzx.smartreadout.functions:
+        class: 'dmzx\smartreadout\core\functions'
+        arguments:
+            - '@user'
+            - '@auth'
+            - '@dbal.conn'
+            - '@template'
+            - '@ext.manager'
+            - '@config'
+            - '%core.php_ext%'
+            - '%tables%'
+    dmzx.smartreadout.admin.controller:
+        class: dmzx\smartreadout\controller\admin_controller
+        arguments:
+            - '@config'
+            - '@template'
+            - '@log'
+            - '@user'
+            - '@request'
+    dmzx.smartreadout.listener:
+        class: dmzx\smartreadout\event\listener
+        arguments:
+            - '@user'
+            - '@template'
+            - '@auth'
+            - '@config'
+            - '@controller.helper'
+            - '@dmzx.smartreadout.functions'
+        tags:
+            - { name: event.listener }
