@@ -1,6 +1,6 @@
 # Smart read out Extension
 
-[![Build Status](https://travis-ci.org/dmzx/Copyright-Extended.svg?branch=master)](https://travis-ci.org/dmzx/Smart-read-out)
+[![Build Status](https://travis-ci.com/dmzx/Copyright-Extended.svg?branch=master)](https://travis-ci.com/dmzx/Smart-read-out)
 
 ## Information
 Based on Willem's [DSMR-logger](https://willem.aandewiel.nl) this extension will display the [API](https://willem.aandewiel.nl/index.php/2020/02/28/restapis-zijn-hip-nieuwe-firmware-voor-de-dsmr-logger) recieved from the DSMR-Logger.<br>
