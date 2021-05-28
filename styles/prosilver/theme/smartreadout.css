@@ -39,3 +39,8 @@
     padding: 7px;
 }
 
+.col-md-3 {
+    float: left;
+    text-align: center;
+}
+

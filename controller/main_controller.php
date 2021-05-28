@@ -95,7 +95,7 @@ class main_controller
 
 			$ip_array = json_decode($ip_query);
 
-			// If smart read out log is enabled store the values to the database.
+			// If smart read out log is enabled store the values into the database.
 			if ($this->config['smartreadout_enable_log'])
 			{
 				$this->functions->smartreadout_log($ip_array);

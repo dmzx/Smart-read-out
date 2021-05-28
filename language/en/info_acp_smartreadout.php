@@ -39,4 +39,6 @@ $lang = array_merge($lang, [
 	'ACP_SMARTREADOUT_TITLE'				=> 'Smart read out',
 	'ACP_SMARTREADOUT_OPTIONS_SAVED'		=> 'Smart read out options has been saved.',
 	'ACP_SMARTREADOUT_SETTINGS'				=> 'Settings',
+	// Log
+	'LOG_SMARTREADOUT_SAVED'				=> '<strong>Smart read out settings updated</strong>',
 ]);

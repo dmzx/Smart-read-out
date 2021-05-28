@@ -89,7 +89,7 @@ class admin_controller
 				$this->set_options();
 
 				// Add option settings change action to the admin log
-				$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'SMARTREADOUT_SAVED');
+				$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_SMARTREADOUT_SAVED');
 
 				trigger_error($this->user->lang('ACP_SMARTREADOUT_OPTIONS_SAVED') . adm_back_link($this->u_action));
 			}
@@ -110,6 +110,7 @@ class admin_controller
 			'SMARTREADOUT_TOTAL_POWER'			=> $this->config['smartreadout_total_power'],
 			'SMARTREADOUT_ENABLE_LOG'			=> $this->config['smartreadout_enable_log'],
 			'SMARTREADOUT_REFRESH'				=> $this->config['smartreadout_refresh'],
+			'SMARTREADOUT_VERSION'				=> $this->config['smartreadout_version'],
 			'U_ACTION'							=> $this->u_action,
 		]);
 	}
