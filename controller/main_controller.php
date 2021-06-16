@@ -64,31 +64,31 @@ class main_controller
 
 			if ($this->config['smartreadout_phase_connect'] == 'L1')
 			{
-				$num_value = 33;
+				$num_value = 34;
 			}
 			else if ($this->config['smartreadout_phase_connect'] == 'L2')
 			{
-				$num_value = 34;
+				$num_value = 35;
 			}
 			else
 			{
-				$num_value = 35;
+				$num_value = 36;
 			}
 
 			if (!empty($get_ip_array))
 			{
 				$this->template->assign_block_vars('smartreadout',[
-					'ENERGY_RETURNED_TARIFF1'		=> number_format($get_ip_array->fields[6]->value, 2, '.', ''),
-					'ENERGY_RETURNED_TARIFF2'		=> number_format($get_ip_array->fields[7]->value, 2, '.', ''),
-					'POWER_DELIVERED'				=> number_format($get_ip_array->fields[9]->value, 2, '.', ''),
-					'POWER_RETURNED'				=> number_format($get_ip_array->fields[10]->value, 2, '.', ''),
+					'ENERGY_RETURNED_TARIFF1'		=> number_format($get_ip_array->fields[7]->value, 2, '.', ''),
+					'ENERGY_RETURNED_TARIFF2'		=> number_format($get_ip_array->fields[8]->value, 2, '.', ''),
+					'POWER_DELIVERED'				=> number_format($get_ip_array->fields[10]->value, 2, '.', ''),
+					'POWER_RETURNED'				=> number_format($get_ip_array->fields[11]->value, 2, '.', ''),
 					'POWER_RETURNED_PHASE'			=> number_format($get_ip_array->fields[$num_value]->value, 2, '.', ''),
-					'VOLTAGE_L1'					=> $get_ip_array->fields[24]->value,
-					'VOLTAGE_L2'					=> $get_ip_array->fields[25]->value,
-					'VOLTAGE_L3'					=> $get_ip_array->fields[26]->value,
-					'CURRENT_L1'					=> $get_ip_array->fields[27]->value,
-					'CURRENT_L2'					=> $get_ip_array->fields[28]->value,
-					'CURRENT_L3'					=> $get_ip_array->fields[29]->value,
+					'VOLTAGE_L1'					=> $get_ip_array->fields[25]->value . ' ' . $get_ip_array->fields[25]->unit,
+					'VOLTAGE_L2'					=> $get_ip_array->fields[26]->value . ' ' . $get_ip_array->fields[26]->unit,
+					'VOLTAGE_L3'					=> $get_ip_array->fields[27]->value . ' ' . $get_ip_array->fields[27]->unit,
+					'CURRENT_L1'					=> $get_ip_array->fields[28]->value . ' ' . $get_ip_array->fields[28]->unit,
+					'CURRENT_L2'					=> $get_ip_array->fields[29]->value . ' ' . $get_ip_array->fields[29]->unit,
+					'CURRENT_L3'					=> $get_ip_array->fields[30]->value . ' ' . $get_ip_array->fields[30]->unit,
 				]);
 
 				$this->template->assign_var('SMARTREADOUT_ACTIVE_VIEW', true);
