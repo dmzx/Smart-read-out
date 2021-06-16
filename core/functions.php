@@ -76,38 +76,68 @@ class functions
 	}
 
 	// Store values to database
-	public function smartreadout_log($ip_array)
+	public function smartreadout_log()
 	{
 		if ($this->config['smartreadout_enable_log'])
 		{
+			$get_ip_array = $this->get_ip_array();
+
 			// Sets the values required for the log
 			$sql_ary = [
 				'sro_timestamp'					=> time(),
-				'sro_energy_delivered_tariff1'	=> $ip_array->fields[4]->value,
-				'sro_energy_delivered_tariff2'	=> $ip_array->fields[5]->value,
-				'sro_energy_returned_tariff1'	=> $ip_array->fields[6]->value,
-				'sro_energy_returned_tariff2'	=> $ip_array->fields[7]->value,
-				'sro_power_delivered'			=> $ip_array->fields[9]->value,
-				'sro_power_returned'			=> $ip_array->fields[10]->value,
-				'sro_voltage_l1'				=> $ip_array->fields[24]->value,
-				'sro_voltage_l2'				=> $ip_array->fields[25]->value,
-				'sro_voltage_l3'				=> $ip_array->fields[26]->value,
-				'sro_current_l1'				=> $ip_array->fields[27]->value,
-				'sro_current_l2'				=> $ip_array->fields[28]->value,
-				'sro_current_l3'				=> $ip_array->fields[29]->value,
-				'sro_power_delivered_l1'		=> $ip_array->fields[30]->value,
-				'sro_power_delivered_l2'		=> $ip_array->fields[31]->value,
-				'sro_power_delivered_l3'		=> $ip_array->fields[32]->value,
-				'sro_power_returned_l1'			=> $ip_array->fields[33]->value,
-				'sro_power_returned_l2'			=> $ip_array->fields[34]->value,
-				'sro_power_returned_l3'			=> $ip_array->fields[35]->value,
-				'sro_gas_delivered'				=> $ip_array->fields[39]->value,
+				'sro_energy_delivered_tariff1'	=> $get_ip_array->fields[4]->value,
+				'sro_energy_delivered_tariff2'	=> $get_ip_array->fields[5]->value,
+				'sro_energy_returned_tariff1'	=> $get_ip_array->fields[6]->value,
+				'sro_energy_returned_tariff2'	=> $get_ip_array->fields[7]->value,
+				'sro_power_delivered'			=> $get_ip_array->fields[9]->value,
+				'sro_power_returned'			=> $get_ip_array->fields[10]->value,
+				'sro_voltage_l1'				=> $get_ip_array->fields[24]->value,
+				'sro_voltage_l2'				=> $get_ip_array->fields[25]->value,
+				'sro_voltage_l3'				=> $get_ip_array->fields[26]->value,
+				'sro_current_l1'				=> $get_ip_array->fields[27]->value,
+				'sro_current_l2'				=> $get_ip_array->fields[28]->value,
+				'sro_current_l3'				=> $get_ip_array->fields[29]->value,
+				'sro_power_delivered_l1'		=> $get_ip_array->fields[30]->value,
+				'sro_power_delivered_l2'		=> $get_ip_array->fields[31]->value,
+				'sro_power_delivered_l3'		=> $get_ip_array->fields[32]->value,
+				'sro_power_returned_l1'			=> $get_ip_array->fields[33]->value,
+				'sro_power_returned_l2'			=> $get_ip_array->fields[34]->value,
+				'sro_power_returned_l3'			=> $get_ip_array->fields[35]->value,
+				'sro_gas_delivered'				=> $get_ip_array->fields[39]->value,
 			];
 
-			// Insert the search data into the database
+			// Insert the data into the database
 			$sql = 'INSERT INTO ' . $this->tables['smartreadout_log'] . ' ' . $this->db->sql_build_array('INSERT', $sql_ary);
 			$this->db->sql_query($sql);
 		}
+	}
+
+	// Get curl
+	public function get_ip_array()
+	{
+		$ip_adres = $this->config['smartreadout_ip_adress'];
+		$ip_port = $this->config['smartreadout_ip_port'];
+
+		if ($ip_port ==	'')
+		{
+			$url_to_api = 'http://' . $ip_adres . '/api/v1/sm/fields';
+		}
+		else
+		{
+			$url_to_api = 'http://' . $ip_adres . ':' . $ip_port . '/api/v1/sm/fields';
+		}
+
+		$curl_handle = curl_init();
+		curl_setopt($curl_handle, CURLOPT_URL, $url_to_api);
+		curl_setopt($curl_handle, CURLOPT_HTTPHEADER,['Content-Type: application/json']);
+		curl_setopt($curl_handle, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
+		$ip_query = curl_exec($curl_handle);
+		curl_close($curl_handle);
+
+		$ip_array = json_decode($ip_query);
+
+		return $ip_array;
 	}
 
 	// Get page name

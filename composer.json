@@ -2,8 +2,8 @@
 	"name": "dmzx/smartreadout",
 	"type": "phpbb-extension",
 	"description": "This extension adds Smart read out to the index.",
-	"version": "1.0.1",
-	"time": "2021-05-28",
+	"version": "1.0.2",
+	"time": "2021-05-31",
 	"keywords": [
 		"phpbb",
 		"extension",

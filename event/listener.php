@@ -70,6 +70,7 @@ class listener implements EventSubscriberInterface
 			'core.permissions'					=> 'permissions',
 			'core.user_setup'					=> 'load_language_on_setup',
 			'core.page_header_after'			=> 'page_header_after',
+			'core.page_footer_after'			=> 'page_footer_after',
 		];
 	}
 
@@ -114,6 +115,15 @@ class listener implements EventSubscriberInterface
 				$this->functions->assign_authors();
 				$this->template->assign_var('SMARTREADOUT_FOOTER_VIEW', true);
 			}
+		}
+	}
+
+	public function page_footer_after($event)
+	{
+		// If smart read out log is enabled store the values into the database.
+		if ($this->config['smartreadout_enable_log'])
+		{
+			$this->functions->smartreadout_log();
 		}
 	}
 }
