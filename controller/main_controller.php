@@ -80,6 +80,7 @@ class main_controller
 				$this->template->assign_block_vars('smartreadout',[
 					'ENERGY_RETURNED_TARIFF1'		=> number_format($get_ip_array->fields[7]->value, 2, '.', ''),
 					'ENERGY_RETURNED_TARIFF2'		=> number_format($get_ip_array->fields[8]->value, 2, '.', ''),
+					'ENERGY_RETURNED_TOTAL'			=> number_format($get_ip_array->fields[7]->value, 2, '.', '') + number_format($get_ip_array->fields[8]->value, 2, '.', ''),
 					'POWER_DELIVERED'				=> number_format($get_ip_array->fields[10]->value, 2, '.', ''),
 					'POWER_RETURNED'				=> number_format($get_ip_array->fields[11]->value, 2, '.', ''),
 					'POWER_RETURNED_PHASE'			=> number_format($get_ip_array->fields[$num_value]->value, 2, '.', ''),

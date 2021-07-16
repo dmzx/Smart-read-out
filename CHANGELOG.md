@@ -1,5 +1,9 @@
 ## Smart read out Changelog
 
+### 1.0.4- 2021-07-16
+
+- Code update.
+
 ### 1.0.3- 2021-06-16
 
 - Code update for v3.0.1 DSMRloggerAPI.
