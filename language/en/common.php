@@ -44,10 +44,8 @@ $lang = array_merge($lang, [
 	'SMARTREADOUT_POWER_USED'						=> 'Power used',
 	'SMARTREADOUT_TOTAL_MIN_RETURNED'				=> '(Total - Solar returned)',
 	'SMARTREADOUT_ENERGY_RETURNED'					=> 'Energy returned',
-	
 	'SMARTREADOUT_ENERGY_RETURNED_TOTAL'			=> 'Energy returned total',
 	'SMARTREADOUT_TARRIF_TOTAL'						=> 'tariff 1 + tariff 2',
-	
 	'SMARTREADOUT_TARRIF_1'							=> 'tariff 1',
 	'SMARTREADOUT_TARRIF_2'							=> 'tariff 2',
 	'SMARTREADOUT_VOLTAGE'							=> 'Voltage',
